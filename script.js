@@ -1,65 +1,66 @@
+// Dua Database
 const duas = {
   dua1: {
-    arabic: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
-    urdu: "Aye hamare Rab! Humein duniya mein bhalai aur akhirat mein bhalai de.",
-    roman: "Aye Rab! Duniya aur aakhirat ki bhalai de, aur dozakh se bacha."
+    arabic: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً...",
+    urdu: "Aye hamare Rab! Humein duniya mein bhalai ata farma..."
   },
   dua2: {
-    arabic: "اللَّهُمَّ رَبَّ النَّاسِ، أَذْهِبِ الْبَأْسَ، اشْفِ، أَنْتَ الشَّافِي",
-    urdu: "Aye Allah! Takleef door kar, shifa de, tu hi shifa dene wala hai.",
-    roman: "Aye Allah! Takleef door kar de, tu hi Shafi hai."
+    arabic: "اللَّهُمَّ رَبَّ النَّاسِ، أَذْهِبِ الْبَأْسَ...",
+    urdu: "Aye Allah! Logon ke Rab, takleef ko door kar de..."
   },
   dua3: {
-    arabic: "اللَّهُمَّ اكْفِنِي بِحَلالِكَ عَنْ حَرَامِكَ",
-    urdu: "Halal se humein kafi karde aur haram se bacha le.",
-    roman: "Aye Allah! Halal se rozi de, haram se door rakh."
+    arabic: "اللَّهُمَّ اكْفِنِي بِحَلالِكَ عَنْ حَرَامِكَ...",
+    urdu: "Aye Allah! Mujhe apne halal rizq se haram se bacha le..."
   },
   dua4: {
     arabic: "رَبِّ هَبْ لِي مِنَ الصَّالِحِينَ",
-    urdu: "Mujhe nek rishta ata farma.",
-    roman: "Aye Rab! Mujhe nek saathi ata farma."
+    urdu: "Aye mere Rab! Mujhe salih logon mein se nikah ata farma."
   },
   dua5: {
-    arabic: "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ",
-    urdu: "Main gunehgar hoon, tu paak hai, maafi de.",
-    roman: "Tere siwa koi nahi, tu paak hai. Maafi de."
-  },
-  dua6: {
-    arabic: "اللّهُمَّ إِنِّي أَسْأَلُكَ العَافِيَةَ وَالخَيْرَ",
-    urdu: "Mujhe sehat aur khair de.",
-    roman: "Aye Allah! Khairiyat aur sehat de."
+    arabic: "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ...",
+    urdu: "Tere siwa koi mabood nahi, tu paak hai..."
   }
 };
 
+// Form Submission
 document.getElementById('duaForm').addEventListener('submit', function(e) {
   e.preventDefault();
+  generateLink();
+});
+
+// Generate Link & Show Dua
+function generateLink() {
   const name = document.getElementById('nameInput').value.trim();
   const duaId = document.getElementById('duaSelect').value;
-  if (!name || !duaId) {
-    alert("Naam aur dua zaroor chunein.");
+
+  if (!name) {
+    alert("Kripya apna naam likhein");
     return;
   }
 
   const dua = duas[duaId];
-  document.getElementById('duaAnimation').classList.remove('hidden');
-  document.querySelector('.arabic').textContent = dua.arabic;
-  document.querySelector('.urdu').textContent = dua.urdu;
 
-  const romanToggle = document.getElementById('romanToggle');
-  const romanText = document.getElementById('romanText');
-  if (romanToggle.checked) {
-    romanText.textContent = dua.roman;
-    romanText.classList.remove('hidden');
-  } else {
-    romanText.classList.add('hidden');
-  }
+  // Update animation area with Arabic + Urdu + User Name
+  const animation = document.getElementById('duaAnimation');
+  animation.classList.remove('hidden');
+  animation.innerHTML = `
+    <div class="arabic">${dua.arabic}</div>
+    <div class="urdu">${dua.urdu}</div>
+    <div class="urdu"><strong>${name}</strong> ke naam se – <em>Zeenat ka ek ruhani tohfa 💌</em></div>
+  `;
 
-  const link = `https://muhram-dua.vercel.app/?name=${encodeURIComponent(name)}&dua=${duaId}`;
+  // Generate personalized link
+  const link = `https://muhram-dua-share.vercel.app/dua.html?name=${encodeURIComponent(name)}&dua=${duaId}`;
+
+  // Show link section
+  const linkSection = document.getElementById('linkSection');
+  linkSection.classList.remove('hidden');
   document.getElementById('generatedLink').value = link;
-  document.getElementById('linkSection').classList.remove('hidden');
-  alert("Dua ready! Dil se Ameen kehna mat bhoolna 🤲");
-});
 
+  linkSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Copy Link
 function copyLink() {
   const linkInput = document.getElementById('generatedLink');
   linkInput.select();
@@ -67,9 +68,10 @@ function copyLink() {
   alert("Link copy ho gaya! Ab aap paste kar sakte hain.");
 }
 
+// Share Buttons
 function shareOnWhatsApp() {
   const link = document.getElementById('generatedLink').value;
-  window.open(`https://wa.me/?text=${encodeURIComponent("Ye dua aapke liye hai 🤲: " + link)}`, '_blank');
+  window.open(`https://wa.me/?text=${encodeURIComponent("Zeenat ka ek dua tohfa aapke liye: " + link)}`, '_blank');
 }
 
 function shareOnFacebook() {
@@ -77,6 +79,10 @@ function shareOnFacebook() {
   window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, '_blank');
 }
 
-function donate() {
-  alert("Shukriya! Aapka donation zarooratmand bachon ke liye bahut kaam aayega.");
+function shareOnInstagram() {
+  alert("Instagram par link share karne ke liye link ko manually bio ya story me paste karein.");
+}
+
+function shareOnSnapchat() {
+  alert("Snapchat par sharing ke liye aap is link ko copy karke story me paste karein.");
 }
