@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruhani Dua Generator – Zeenat Ka Tohfa</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
 
+<header>
+  <h1>🤲 Zeenat Ka Tohfa – Dua Generator</h1>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="dua.html">Dua Generator</a>
+    <a href="shayari.html">Karbala Shayari</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<main>
+  <div class="container">
+    <h2>Aapke Naam Se Ek Ruhani Dua</h2>
+    <form id="duaForm">
+      <select id="duaSelect" class="form-input">
+        <option value="dua1">Har Mushkil Ka Hal</option>
+        <option value="dua2">Bimari Se Shifa</option>
+        <option value="dua3">Rizq Mein Barkat</option>
+        <option value="dua4">Nikah Ke Liye</option>
+        <option value="dua5">Hajat Puri Hone Ki</option>
+      </select>
+      <input type="text" id="nameInput" class="form-input" placeholder="Apna naam likhein" required>
+      <button type="submit" class="btn">Zeenat Ka Tohfa Banayein</button>
+    </form>
+
+    <div id="linkSection" class="result-box hidden">
+      <h3>🎁 Aapke Naam Se Tohfa Tayyar Hai:</h3>
+      <div class="link-container">
+        <input type="text" id="generatedLink" readonly class="link-input">
+        <button onclick="copyLink()" class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+      </div>
+
+      <div class="share-buttons">
+        <button class="share-btn whatsapp" onclick="shareOnWhatsApp()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+        <button class="share-btn facebook" onclick="shareOnFacebook()"><i class="fab fa-facebook"></i> Facebook</button>
+        <button class="share-btn instagram" onclick="shareOnInstagram()"><i class="fab fa-instagram"></i> Instagram</button>
+        <button class="share-btn snapchat" onclick="shareOnSnapchat()"><i class="fab fa-snapchat-ghost"></i> Snapchat</button>
+      </div>
+    </div>
+
+    <div class="dua-animation hidden" id="duaAnimation">
+      <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+      <div class="urdu">شروع اللہ کے نام سے جو بڑا مہربان نہایت رحم والا ہے</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Zeenat Ka Tohfa | Apne dosto ko bhi share karein 💌</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
