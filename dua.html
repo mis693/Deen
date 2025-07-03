@@ -1,30 +1,101 @@
+<!-- dua.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Zeenat ka Tahufa</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dua Generator - Islamic World</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
-  <section class="zeenat-dua">
-    <h2 id="title">💖 Zeenat ka Tahufa Aapke Liye 💖</h2>
-    <p id="personalDua" class="roman-urdu"></p>
-  </section>
+<body class="text-white min-h-screen backdrop-blur-md" style="background: url('assets/img/stars.gif') center/cover no-repeat fixed;">
 
-  <footer>
-    <p>© 2025 Zeenat's Dua Page | May Allah bless you 🌙</p>
-  </footer>
+  <header class="bg-black bg-opacity-70 text-center p-6 shadow">
+    <h1 class="text-3xl font-bold">💌 Ruhani Dua</h1>
+    <p class="text-gray-300">Send spiritual blessings to your loved ones</p>
+  </header>
+
+  <div class="flex justify-center p-2">
+    <div class="w-full max-w-md h-24 bg-gray-800 text-center text-gray-400 text-sm flex items-center justify-center rounded">Google Ad Banner</div>
+  </div>
+
+  <main class="p-6 max-w-xl mx-auto bg-black bg-opacity-60 rounded-xl mt-4">
+    <form id="dua-form" class="space-y-4">
+      <div>
+        <label for="sender" class="block font-semibold">Your Name</label>
+        <input type="text" id="sender" class="w-full p-2 rounded bg-gray-700 border border-gray-600" required />
+      </div>
+      <div>
+        <label for="receiver" class="block font-semibold">Recipient</label>
+        <input type="text" id="receiver" class="w-full p-2 rounded bg-gray-700 border border-gray-600" required />
+      </div>
+      <div>
+        <label for="message" class="block font-semibold">Your Dua</label>
+        <textarea id="message" class="w-full p-2 rounded bg-gray-700 border border-gray-600" required></textarea>
+      </div>
+      <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">✨ Generate Link</button>
+    </form>
+
+    <div id="preview-box" class="mt-6 hidden bg-gray-900 p-4 rounded">
+      <h2 class="text-lg font-semibold text-green-400">Dua Preview:</h2>
+      <p id="preview-text" class="italic my-2"></p>
+      <input id="share-link" class="w-full p-2 text-sm rounded bg-gray-800 text-green-300 border border-green-600" readonly />
+      <div class="mt-2 flex gap-3 flex-wrap">
+        <button onclick="copyLink()" class="bg-blue-600 px-3 py-1 rounded">📋 Copy Link</button>
+        <a id="whatsapp-link" target="_blank" class="bg-green-600 px-3 py-1 rounded">🟢 WhatsApp</a>
+        <a id="fb-link" target="_blank" class="bg-blue-700 px-3 py-1 rounded">🔵 Facebook</a>
+        <a id="insta-link" target="_blank" class="bg-pink-600 px-3 py-1 rounded">🟣 Instagram</a>
+      </div>
+    </div>
+  </main>
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name') || "Aap";
+    const form = document.getElementById('dua-form');
+    const preview = document.getElementById('preview-text');
+    const previewBox = document.getElementById('preview-box');
+    const linkInput = document.getElementById('share-link');
+    const waLink = document.getElementById('whatsapp-link');
+    const fbLink = document.getElementById('fb-link');
+    const instaLink = document.getElementById('insta-link');
 
-    const dua = `Ya Allah! ${name} ko har gham se nijat de, unki har dua qubool farma. 
-    ${name} ke maa-baap aur ghar walon ko sihat aur barkat de. 
-    Rizq mein izafa farma aur zindagi mein har din nayi roshni de. Ameen.`;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const sender = document.getElementById('sender').value.trim();
+      const receiver = document.getElementById('receiver').value.trim();
+      const message = document.getElementById('message').value.trim();
 
-    document.getElementById("title").textContent = `💖 Zeenat ka Tahufa ${name} ke Liye 💖`;
-    document.getElementById("personalDua").textContent = dua;
+      const duaText = `\"${message}\" — from ${sender} to ${receiver}`;
+      preview.innerText = duaText;
+      previewBox.classList.remove('hidden');
+
+      const encodedMsg = encodeURIComponent(message);
+      const encodedFrom = encodeURIComponent(sender);
+      const encodedTo = encodeURIComponent(receiver);
+      const url = `${window.location.origin}${window.location.pathname}?from=${encodedFrom}&to=${encodedTo}&msg=${encodedMsg}`;
+
+      linkInput.value = url;
+      waLink.href = `https://wa.me/?text=${encodeURIComponent(duaText + '\\n' + url)}`;
+      fbLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+      instaLink.href = `https://www.instagram.com/`;
+    });
+
+    function copyLink() {
+      navigator.clipboard.writeText(linkInput.value).then(() => alert("Copied!"));
+    }
+
+    const query = new URLSearchParams(window.location.search);
+    if (query.has('from') && query.has('to') && query.has('msg')) {
+      const text = `\"${query.get('msg')}\" — from ${query.get('from')} to ${query.get('to')}`;
+      document.body.innerHTML = `
+        <div class='min-h-screen flex items-center justify-center text-center px-6 bg-black text-white'>
+          <div>
+            <h1 class='text-2xl font-semibold text-green-400 mb-4'>🌙 A Dua Just for You</h1>
+            <p class='text-lg italic text-green-200'>${text}</p>
+            <a href="dua.html" class="block mt-6 text-blue-400 underline">✨ Send Another</a>
+          </div>
+        </div>
+      `;
+    }
   </script>
 </body>
 </html>
