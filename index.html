@@ -1,31 +1,74 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Islamic World - Ruhani Duayein</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <script src="assets/js/script.js" defer></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic-World | Home</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-gray-950 text-white min-h-screen flex flex-col items-center justify-center p-8">
-
-  <h1 class="text-4xl font-bold mb-4">🕌 Islamic World</h1>
-  <p class="text-gray-300 text-center mb-6 max-w-md">
-    Ruhani Duayein, Shayari, Karbala ka Paighaam — Share with Love
-  </p>
-
-  <div class="flex flex-col gap-4 w-full max-w-xs">
-    <a href="dua.html" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded text-white text-center">🤲 Get a Dua</a>
-    <a href="shayari.html" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded text-white text-center">📜 Read Shayari</a>
-    <a href="share.html" class="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded text-white text-center">📤 Share Dua</a>
-    <a href="support.html" class="bg-yellow-600 hover:bg-yellow-700 px-6 py-2 rounded text-white text-center">💸 Support Us</a>
-  </div>
-
-  <footer class="mt-10 text-sm text-gray-500">
-    Made with 💖 by Zeenat
-  </footer>
-
+<body>
+    <header>
+        <img src="assets/img/stars.gif" alt="Islamic World" class="logo">
+        <h1>Welcome to Islamic-World</h1>
+    </header>
+    
+    <div class="name-form">
+        <form id="nameForm">
+            <input type="text" id="nameInput" class="name-input" placeholder="Enter your name" required>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+    
+    <div id="countdown" class="countdown" style="display: none;"></div>
+    
+    <div id="duaDisplay" class="dua-display" style="display: none;"></div>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <div id="shareSection" style="display: none;">
+        <h2>Share with Friends</h2>
+        <div class="share-buttons">
+            <a href="#" class="share-btn whatsapp">WhatsApp</a>
+            <a href="#" class="share-btn facebook">Facebook</a>
+            <a href="#" class="share-btn instagram">Instagram</a>
+        </div>
+        <div class="name-form">
+            <input type="text" id="shareLink" class="name-input" readonly>
+            <button id="copyBtn" class="submit-btn">Copy Link</button>
+        </div>
+    </div>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <section class="allah-section">
+        <h2>Allah</h2>
+        <p>Learn about the greatness of Allah (SWT)</p>
+        <a href="allah.html" class="submit-btn">Explore</a>
+    </section>
+    
+    <section class="muhammad-section">
+        <h2>Prophet Muhammad (PBUH)</h2>
+        <p>Learn about the life and teachings of our beloved Prophet</p>
+        <a href="muhammad.html" class="submit-btn">Explore</a>
+    </section>
+    
+    <section class="karbala-section">
+        <h2>Karbala</h2>
+        <p>Discover the significance of Karbala</p>
+        <a href="karbala.html" class="submit-btn">Explore</a>
+    </section>
+    
+    <a href="support.html" class="donation-btn">Support Education for Poor Children</a>
+    
+    <footer>
+        <p>&copy; 2023 Islamic-World. All rights reserved.</p>
+        <p><a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+    </footer>
+    
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
