@@ -1,53 +1,176 @@
-/* style.css */
+/* Base Styles */
 body {
-  background-color: #0a0a1f;
-  color: #e5e7eb;
-  font-family: 'Segoe UI', sans-serif;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
-a {
-  color: #38bdf8;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+header {
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
 }
 
-header, footer {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+.logo {
+    max-width: 150px;
+    height: auto;
 }
 
-button {
-  background-color: #14b8a6;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #0d9488;
+.gift-animation {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
 }
 
-input, textarea {
-  background: #1e293b;
-  color: white;
-  border: 1px solid #334155;
-  padding: 0.5rem;
-  border-radius: 0.4rem;
-  width: 100%;
-  margin-top: 0.25rem;
+/* Section Colors */
+.allah-section {
+    background-color: #001f3f; /* Blue */
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
 }
 
-.social a {
-  margin: 0 0.5rem;
-  font-weight: bold;
-  color: #94a3b8;
+.muhammad-section {
+    background-color: #2ECC40; /* Green */
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.karbala-section {
+    background-color: #FF4136; /* Red */
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+/* Form Styles */
+.name-form {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.name-input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #FF851B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+/* Countdown Styles */
+.countdown {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Dua Display */
+.dua-display {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+/* Share Buttons */
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.share-btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.whatsapp {
+    background-color: #25D366;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.instagram {
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+}
+
+/* Ad Spaces */
+.ad-space {
+    width: 100%;
+    height: 100px;
+    background-color: #333;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+}
+
+/* Donation Button */
+.donation-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #FF4136;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #111;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .name-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .submit-btn {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    .share-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .share-btn {
+        width: 200px;
+        text-align: center;
+    }
 }
