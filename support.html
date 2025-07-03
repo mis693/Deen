@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic-World | Support Education</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/img/stars.gif" alt="Islamic World" class="logo">
+        <h1>Support Education for Poor Children</h1>
+    </header>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <section class="allah-section">
+        <h2>Sadaqah Jariyah - Ongoing Charity</h2>
+        <p>"When a person dies, all their deeds end except three: a continuing charity, beneficial knowledge, and a child who prays for them." (Muslim)</p>
+        <p>Your donation will help provide education to underprivileged children, which is one of the best forms of Sadaqah Jariyah.</p>
+        
+        <form id="donationForm" class="name-form">
+            <input type="number" id="donationAmount" class="name-input" placeholder="Amount in INR" required>
+            <button type="submit" class="submit-btn">Donate Now</button>
+        </form>
+    </section>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Islamic-World. All rights reserved.</p>
+        <p><a href="index.html">Home</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+    </footer>
+    
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.getElementById('donationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const amount = document.getElementById('donationAmount').value;
+            alert(`Thank you for your donation of ₹${amount}. May Allah accept it as Sadaqah Jariyah.`);
+            // In a real implementation, you would connect to a payment gateway here
+        });
+    </script>
+</body>
+</html>
