@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Gift for You</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/img/stars.gif" alt="Islamic World" class="logo">
+        <h1>An Islamic Gift for You</h1>
+    </header>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <div id="giftDisplay" class="dua-display">
+        <!-- This will be filled by JavaScript -->
+    </div>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <div class="share-buttons">
+        <a href="#" class="share-btn whatsapp">Share on WhatsApp</a>
+        <a href="#" class="share-btn facebook">Share on Facebook</a>
+        <a href="#" class="share-btn instagram">Share on Instagram</a>
+    </div>
+    
+    <a href="support.html" class="donation-btn">Support Education for Poor Children</a>
+    
+    <footer>
+        <p>&copy; 2023 Islamic-World. All rights reserved.</p>
+        <p><a href="index.html">Home</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+    </footer>
+    
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Parse URL parameters
+        function getUrlParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const pairs = queryString.split('&');
+            
+            for (let i = 0; i < pairs.length; i++) {
+                const pair = pairs[i].split('=');
+                params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+            }
+            
+            return params;
+        }
+        
+        // Display personalized gift
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = getUrlParams();
+            const toName = params.to || 'Friend';
+            const fromName = params.from || 'A Well-Wisher';
+            
+            const giftDisplay = document.getElementById('giftDisplay');
+            giftDisplay.innerHTML = `
+                <h2>${toName} ke liye Pyara Tohfa</h2>
+                <p>${fromName} ki taraf se ${toName} ke liye ye islami tohfa.</p>
+                <div class="dua-display">
+                    <h3>Dua for ${toName}</h3>
+                    <p>Allah ${toName} ko sehat, salamati, kamiyabi aur apni rehmat se nawaze. Ameen.</p>
+                    <p>${toName} ke liye khair o barkat ki dua.</p>
+                </div>
+                <div class="shayari">
+                    <h3>Islamic Shayari</h3>
+                    <p>Dil se jo niklegi dua ban ke,</p>
+                    <p>Qubool hogi zaroor, bas imaan se.</p>
+                    <p>Allah ke huzoor pesh karo,</p>
+                    <p>Mil jaegi har khushi, har armaan se.</p>
+                </div>
+            `;
+            
+            // Set up share buttons
+            const shareUrl = window.location.href;
+            const shareText = `${fromName} ne ${toName} ke liye ek pyara islami tohfa bheja hai. Dekhiye: ${shareUrl}`;
+            
+            document.querySelector('.whatsapp').href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            document.querySelector('.facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+            document.querySelector('.instagram').href = `https://www.instagram.com/?url=${encodeURIComponent(shareUrl)}`;
+        });
+    </script>
+</body>
+</html>
