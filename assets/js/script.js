@@ -17,7 +17,6 @@ function generateDua() {
   }
 }
 
-// Music toggle logic
 function toggleMusic() {
   const audio = document.getElementById("bg-music") || document.getElementById("karbala-music");
   if (audio) {
@@ -25,7 +24,7 @@ function toggleMusic() {
   }
 }
 
-// Auto-display dua from query string (used in dua.html view mode)
+// Auto-display dua from query string
 document.addEventListener("DOMContentLoaded", () => {
   const query = new URLSearchParams(window.location.search);
   if (query.has('from') && query.has('to') && query.has('msg')) {
