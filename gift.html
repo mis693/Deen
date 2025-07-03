@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Gifted Dua 🎁</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: url('assets/img/stars.gif') center/cover no-repeat fixed;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    .gift-box {
+      width: 180px;
+      height: 180px;
+      background: url('https://i.ibb.co/4F0qqBz/gift-box.gif') center/cover no-repeat;
+      margin: 2rem auto;
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4">
+
+  <h1 class="text-3xl font-bold text-yellow-300 mb-2">🎁 A Special Muharram Gift for You</h1>
+  <p class="text-gray-300 mb-4">Click below to unlock your gift</p>
+
+  <div class="gift-box"></div>
+
+  <input id="receiverName" type="text" placeholder="Enter your name to open" class="bg-gray-900 text-white px-4 py-2 rounded w-64 text-center mb-3 border border-gray-600" />
+  <button onclick="unlockGift()" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded">✨ Open Gift</button>
+
+  <div id="adsAndTimer" class="hidden flex-col items-center mt-6">
+    <div class="w-full max-w-md h-24 bg-gray-800 text-center text-gray-400 flex items-center justify-center mb-2">
+      🔰 Google Ad Placeholder
+    </div>
+    <p id="countdownText" class="text-sm text-gray-400">Please wait 10 seconds...</p>
+  </div>
+
+  <div id="duaMessage" class="hidden mt-6 max-w-lg p-4 bg-black bg-opacity-70 rounded-xl text-lg">
+    <img src="https://i.ibb.co/G7qGb4D/duagift.png" class="mx-auto w-32 mb-3 rounded-lg shadow" alt="gift img" />
+    <p id="finalDua" class="text-green-300 italic leading-relaxed"></p>
+    <a href="index.html" class="block mt-6 text-blue-400 underline">🏠 Back to Home</a>
+  </div>
+
+  <script>
+    function unlockGift() {
+      const name = document.getElementById('receiverName').value.trim();
+      if (!name) return alert("Please enter your name to continue.");
+      document.querySelector('.gift-box').classList.add('hidden');
+      document.getElementById('adsAndTimer').classList.remove('hidden');
+      let countdown = 10;
+      const countdownText = document.getElementById('countdownText');
+      const interval = setInterval(() => {
+        countdown--;
+        countdownText.innerText = `Please wait ${countdown} seconds...`;
+        if (countdown === 0) {
+          clearInterval(interval);
+          document.getElementById('adsAndTimer').classList.add('hidden');
+          showDua(name);
+        }
+      }, 1000);
+    }
+
+    function showDua(receiver) {
+      document.getElementById('duaMessage').classList.remove('hidden');
+      document.getElementById('finalDua').innerHTML = `“May Allah bless <span class='font-bold'>${receiver}</span> with good health, a bright future, and protect their family with His infinite mercy during this sacred month of Muharram.”`;
+    }
+  </script>
+
+</body>
+</html>
