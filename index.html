@@ -3,32 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic-World | Home</title>
+    <title>Islamic-World | Send Islamic Gifts</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .gift-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .gift-card {
+            width: 280px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .gift-card:hover {
+            transform: translateY(-10px);
+        }
+        .gift-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        .gift-card h3 {
+            margin: 10px 0;
+        }
+        .loading-gif {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+            display: none;
+        }
+        .countdown-message {
+            text-align: center;
+            font-size: 18px;
+            margin: 10px 0;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <img src="assets/img/stars.gif" alt="Islamic World" class="logo">
-        <h1>Welcome to Islamic-World</h1>
+        <img src="assets/img/gift-animation.gif" alt="Islamic Gift" class="logo">
+        <h1>Send Islamic Gifts & Blessings</h1>
+        <p>Choose a gift and share with your loved ones</p>
     </header>
     
-    <div class="name-form">
-        <form id="nameForm">
-            <input type="text" id="nameInput" class="name-input" placeholder="Enter your name" required>
-            <button type="submit" class="submit-btn">Submit</button>
+    <div class="gift-options">
+        <div class="gift-card" onclick="selectGift('prayer')">
+            <img src="assets/img/prayer-gift.png" alt="Prayer Gift">
+            <h3>Prayer Gift</h3>
+            <p>Beautiful prayers in Roman English & English with images</p>
+        </div>
+        
+        <div class="gift-card" onclick="selectGift('dua')">
+            <img src="assets/img/dua-gift.png" alt="Dua Gift">
+            <h3>Dua Gift</h3>
+            <p>Personalized duas for health, success and happiness</p>
+        </div>
+        
+        <div class="gift-card" onclick="selectGift('shayari')">
+            <img src="assets/img/shayari-gift.png" alt="Shayari Gift">
+            <h3>Islamic Shayari</h3>
+            <p>Heart-touching Islamic poetry for your loved ones</p>
+        </div>
+    </div>
+    
+    <div id="nameForm" class="name-form" style="display: none;">
+        <h2>Enter Receiver's Name</h2>
+        <form id="giftForm">
+            <input type="text" id="receiverName" class="name-input" placeholder="Enter name" required>
+            <button type="submit" class="submit-btn">Send Gift</button>
         </form>
     </div>
     
-    <div id="countdown" class="countdown" style="display: none;"></div>
-    
-    <div id="duaDisplay" class="dua-display" style="display: none;"></div>
+    <img id="loadingGif" src="assets/img/loading.gif" class="loading-gif" alt="Loading">
+    <div id="countdownMessage" class="countdown-message">
+        Wait! Your gift is on the way 🎁
+    </div>
+    <div id="countdown" class="countdown"></div>
     
     <div class="ad-space">
         Google AdSense Space
     </div>
     
+    <div id="giftDisplay" class="dua-display" style="display: none;"></div>
+    
     <div id="shareSection" style="display: none;">
-        <h2>Share with Friends</h2>
+        <h2>Share with More Friends</h2>
         <div class="share-buttons">
             <a href="#" class="share-btn whatsapp">WhatsApp</a>
             <a href="#" class="share-btn facebook">Facebook</a>
@@ -44,31 +111,109 @@
         Google AdSense Space
     </div>
     
-    <section class="allah-section">
-        <h2>Allah</h2>
-        <p>Learn about the greatness of Allah (SWT)</p>
-        <a href="allah.html" class="submit-btn">Explore</a>
-    </section>
-    
-    <section class="muhammad-section">
-        <h2>Prophet Muhammad (PBUH)</h2>
-        <p>Learn about the life and teachings of our beloved Prophet</p>
-        <a href="muhammad.html" class="submit-btn">Explore</a>
-    </section>
-    
-    <section class="karbala-section">
-        <h2>Karbala</h2>
-        <p>Discover the significance of Karbala</p>
-        <a href="karbala.html" class="submit-btn">Explore</a>
-    </section>
-    
     <a href="support.html" class="donation-btn">Support Education for Poor Children</a>
     
     <footer>
         <p>&copy; 2023 Islamic-World. All rights reserved.</p>
-        <p><a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+        <p><a href="shayari.html">Islamic Shayari</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
     </footer>
     
     <script src="assets/js/script.js"></script>
+    <script>
+        let selectedGiftType = '';
+        
+        function selectGift(type) {
+            selectedGiftType = type;
+            document.getElementById('nameForm').style.display = 'block';
+            window.scrollTo({
+                top: document.getElementById('nameForm').offsetTop,
+                behavior: 'smooth'
+            });
+        }
+        
+        document.getElementById('giftForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const receiverName = document.getElementById('receiverName').value.trim();
+            
+            if (receiverName) {
+                document.getElementById('nameForm').style.display = 'none';
+                document.getElementById('loadingGif').style.display = 'block';
+                document.getElementById('countdownMessage').style.display = 'block';
+                
+                startCountdown(10, 'countdown', function() {
+                    document.getElementById('loadingGif').style.display = 'none';
+                    document.getElementById('countdownMessage').style.display = 'none';
+                    document.getElementById('countdown').style.display = 'none';
+                    
+                    showGift(receiverName, selectedGiftType);
+                });
+            }
+        });
+        
+        function showGift(name, type) {
+            const giftDisplay = document.getElementById('giftDisplay');
+            let giftContent = '';
+            
+            if (type === 'prayer') {
+                giftContent = `
+                    <h2>${name} ke liye Prayer Gift</h2>
+                    <img src="assets/img/prayer-image.jpg" style="max-width:100%; border-radius:10px; margin:15px 0;">
+                    <div style="text-align:left; padding:0 20px;">
+                        <h3>Roman English Prayer:</h3>
+                        <p>Subhanallahi wal hamdulillahi wa la ilaha illallahu wallahu akbar</p>
+                        
+                        <h3>English Translation:</h3>
+                        <p>Glory be to Allah, all praise is for Allah, there is no god but Allah, and Allah is the greatest</p>
+                        
+                        <p>May Allah bless ${name} with health, happiness and success in this life and the hereafter. Ameen.</p>
+                    </div>
+                `;
+            } else if (type === 'dua') {
+                giftContent = `
+                    <h2>${name} ke liye Special Dua</h2>
+                    <img src="assets/img/dua-image.jpg" style="max-width:100%; border-radius:10px; margin:15px 0;">
+                    <div style="text-align:left; padding:0 20px;">
+                        <h3>Dua for ${name}:</h3>
+                        <p>Rabbana hablana min azwajina wa dhurriyatina qurrata a'yunin waj'alna lil-muttaqina imama</p>
+                        
+                        <h3>Meaning:</h3>
+                        <p>"Our Lord, grant us from among our spouses and offspring comfort to our eyes and make us an example for the righteous."</p>
+                        
+                        <p>May Allah accept this dua for ${name} and grant them all the blessings in this world and the hereafter. Ameen.</p>
+                    </div>
+                `;
+            } else if (type === 'shayari') {
+                giftContent = `
+                    <h2>${name} ke liye Islamic Shayari</h2>
+                    <img src="assets/img/shayari-image.jpg" style="max-width:100%; border-radius:10px; margin:15px 0;">
+                    <div style="text-align:center; padding:0 20px;">
+                        <p>Tere liye ye dua hai meri,</p>
+                        <p>Khuda se mangta hun main har pal.</p>
+                        <p>Mil tujhe har wo khushi,</p>
+                        <p>Jiski tujhe hai talash, ${name} mere yaar.</p>
+                        <br>
+                        <p>Dil se niklegi jo dua ban ke,</p>
+                        <p>Qubool hogi zaroor, bas imaan se.</p>
+                        <p>Allah ke huzoor pesh karo,</p>
+                        <p>Mil jaegi har khushi, har armaan se.</p>
+                    </div>
+                `;
+            }
+            
+            giftDisplay.innerHTML = giftContent;
+            giftDisplay.style.display = 'block';
+            
+            // Generate shareable link
+            const shareLink = `${window.location.origin}/share.html?to=${encodeURIComponent(name)}&from=You&type=${type}`;
+            document.getElementById('shareLink').value = shareLink;
+            document.getElementById('shareSection').style.display = 'block';
+            
+            // Set up share buttons
+            const shareText = `I've sent you a beautiful Islamic ${type} gift. Click to view: ${shareLink}`;
+            document.querySelector('.whatsapp').href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            document.querySelector('.facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareLink)}`;
+            document.querySelector('.instagram').href = `https://www.instagram.com/?url=${encodeURIComponent(shareLink)}`;
+        }
+    </script>
 </body>
 </html>
