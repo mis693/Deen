@@ -1,46 +1,111 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karbala Shayari – Alwida Muharram</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic-World | Islamic Shayari</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .shayari-category {
+            text-align: center;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .shayari-category:hover {
+            transform: scale(1.05);
+        }
+        .shayari-category h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .shayari-category p {
+            font-size: 18px;
+        }
+        .divider {
+            border-top: 2px dashed #fff;
+            margin: 30px auto;
+            width: 80%;
+        }
+    </style>
 </head>
 <body>
-
-<header>
-  <h1>💔 Karbala Alwida Shayari</h1>
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="dua.html">Dua Generator</a>
-    <a href="shayari.html">Karbala Shayari</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="about.html">About</a>
-  </nav>
-</header>
-
-<main>
-  <div class="container">
-    <div class="karbala-shayari">
-      <p><strong>🕊️</strong> "Karbala ka zakhm abhi bhi taza hai, Har aansu ek naya paighaam deta hai."</p>
-      <p><strong>💔</strong> "Zameen roti rahi, asmaan gham se jhuk gaya – jab Hussain ka lahu baha."</p>
-      <p><strong>⚔️</strong> "Sir kata diya magar sajda chhodha nahi – Imaan ki taqat ka saboot Hussain hai."</p>
+    <header>
+        <img src="assets/img/stars.gif" alt="Islamic World" class="logo">
+        <h1>Islamic Shayari</h1>
+        <p>Choose your emotional kalam</p>
+    </header>
+    
+    <div class="ad-space">
+        Google AdSense Space
     </div>
-
-    <div class="ruhani-dua">
-      <p>🤲 <strong>Dua:</strong> Ya Allah! Muharram ke iss alwida pe hamare dilon mein Hussain ke jazbe ko zinda rakh,
-      agle Muharram tak humein imaan mein mazbooti, sabr, aur istiqamat ata farma. Ameen.</p>
+    
+    <div class="shayari-category karbala-section" onclick="location.href='karbala.html'">
+        <h2>Karbala</h2>
+        <p>Ya Hussain's sacrifice, emotional poetry & remembrance.</p>
     </div>
-
-    <div class="ads-placeholder">
-      [🅰 Google Ad Yahan Lagega – Karbala Books / Islamic Courses]
+    
+    <div class="divider"></div>
+    
+    <div class="shayari-category muhammad-section" onclick="location.href='muhammad.html'">
+        <h2>Muhammad</h2>
+        <p>Naat, praises & shayari in honor of the beloved Prophet.</p>
     </div>
-  </div>
-</main>
-
-<footer>
-  <p>&copy; 2025 Zeenat Ka Tohfa | Karbala se mohabbat imaan ka nishan hai.</p>
-</footer>
-
+    
+    <div class="divider"></div>
+    
+    <div class="shayari-category allah-section" onclick="location.href='allah.html'">
+        <h2>Allah</h2>
+        <p>Poetry glorifying Allah's mercy, beauty and oneness.</p>
+    </div>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <div class="share-section">
+        <h2>Share Islamic Blessings</h2>
+        <form id="shareForm" class="name-form">
+            <input type="text" id="friendName" class="name-input" placeholder="Enter friend's name" required>
+            <button type="submit" class="submit-btn">Generate Dua Link</button>
+        </form>
+        <div id="generatedLink" style="display: none; margin-top: 20px;">
+            <input type="text" id="shareableLink" class="name-input" readonly>
+            <button onclick="copyToClipboard()" class="submit-btn">Copy Link</button>
+        </div>
+    </div>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <a href="support.html" class="donation-btn">Support Education for Poor Children</a>
+    
+    <footer>
+        <p>&copy; 2023 Islamic-World. All rights reserved.</p>
+        <p><a href="index.html">Home</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+    </footer>
+    
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.getElementById('shareForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const friendName = document.getElementById('friendName').value.trim();
+            if (friendName) {
+                const shareLink = `${window.location.origin}/share.html?to=${encodeURIComponent(friendName)}&from=You`;
+                document.getElementById('shareableLink').value = shareLink;
+                document.getElementById('generatedLink').style.display = 'block';
+            }
+        });
+        
+        function copyToClipboard() {
+            const copyText = document.getElementById('shareableLink');
+            copyText.select();
+            document.execCommand('copy');
+            alert('Link copied to clipboard!');
+        }
+    </script>
 </body>
 </html>
