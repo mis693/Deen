@@ -1,75 +1,61 @@
-/* Gift Selection Styles */
-.gift-options {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin: 30px 0;
+/* style.css */
+body {
+  background-color: #0f172a;
+  color: #e2e8f0;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
 }
 
-.gift-card {
-    width: 280px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s;
+a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
-.gift-card:hover {
-    transform: translateY(-10px);
+header, footer {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-.gift-card img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
+button {
+  background-color: #14b8a6;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0d9488;
 }
 
-.gift-card h3 {
-    margin: 10px 0;
+input, textarea {
+  background: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  width: 100%;
 }
 
-.loading-gif {
-    width: 80px;
-    height: 80px;
-    margin: 20px auto;
-    display: none;
+#share-link {
+  font-family: monospace;
+  letter-spacing: 0.5px;
 }
 
-.countdown-message {
-    text-align: center;
-    font-size: 18px;
-    margin: 10px 0;
-    display: none;
+.gift-box {
+  width: 150px;
+  height: 150px;
+  background: url('https://i.ibb.co/4F0qqBz/gift-box.gif') center/cover no-repeat;
+  animation: bounce 1.5s infinite;
+  margin-top: 2rem;
 }
 
-/* Shayari Page Styles */
-.shayari-category {
-    text-align: center;
-    padding: 30px;
-    margin: 20px 0;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.shayari-category:hover {
-    transform: scale(1.05);
-}
-
-.shayari-category h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
-.shayari-category p {
-    font-size: 18px;
-}
-
-.divider {
-    border-top: 2px dashed #fff;
-    margin: 30px auto;
-    width: 80%;
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
