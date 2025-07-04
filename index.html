@@ -1,38 +1,135 @@
-<!-- index.html - Final One-Click Dua Gift Generator --><!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Islamic World - Send Dua</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <script src="assets/js/script.js" defer></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: url('assets/img/stars.gif') center/cover no-repeat fixed;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .glow {
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #10b981, 0 0 20px #10b981; }
-      to { text-shadow: 0 0 20px #34d399, 0 0 40px #34d399; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Gift</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .gift-box {
+            width: 150px;
+            margin: 30px auto;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        #countdown {
+            font-size: 24px;
+            margin: 20px;
+            display: none;
+        }
+        #result {
+            margin-top: 30px;
+            display: none;
+        }
+        .ad-space {
+            height: 100px;
+            background-color: #333;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+        }
+    </style>
 </head>
-<body class="text-white min-h-screen flex flex-col justify-center items-center p-6 backdrop-blur-sm">  <h1 class="text-4xl font-bold text-emerald-400 glow mb-3">🌙 Islamic World</h1>
-  <p class="text-gray-300 text-center mb-6">Gift a Ruhani Dua with just one click</p>  <button onclick="generateLink()" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded text-lg shadow mb-4">
-    🎁 Create My Dua Link
-  </button>  <div id="link-box" class="hidden bg-black bg-opacity-70 p-4 rounded max-w-md w-full">
-    <input id="share-link" class="w-full p-2 text-sm rounded bg-gray-800 text-green-300 border border-green-600 mb-2" readonly />
-    <div class="flex flex-wrap gap-2 justify-center">
-      <button onclick="copyLink()" class="bg-blue-600 px-3 py-1 rounded">📋 Copy</button>
-      <a id="wa-link" target="_blank" class="bg-green-600 px-3 py-1 rounded">🟢 WhatsApp</a>
-      <a id="fb-link" target="_blank" class="bg-blue-700 px-3 py-1 rounded">🔵 Facebook</a>
+<body>
+    <h1>Islamic Gift</h1>
+    <img src="gift.gif" class="gift-box" alt="Gift Box">
+    
+    <div id="name-form">
+        <p>Enter your name to receive your gift:</p>
+        <input type="text" id="name" placeholder="Your Name">
+        <button onclick="startGift()">Open Gift</button>
     </div>
-  </div>  <div class="mt-6">
-    <img src="https://i.ibb.co/4F0qqBz/gift-box.gif" class="w-24 mx-auto animate-bounce" alt="gift" />
-  </div>  <footer class="mt-10 text-sm text-gray-500">
-    — by Zeenat • Muharram Special 💖
-  </footer></body>
+    
+    <div id="countdown"></div>
+    
+    <div class="ad-space">
+        Google AdSense Space
+    </div>
+    
+    <div id="result"></div>
+    
+    <div id="share" style="display:none; margin-top:30px;">
+        <p>Share this gift with friends:</p>
+        <input type="text" id="share-link" readonly>
+        <button onclick="copyLink()">Copy Link</button>
+    </div>
+
+    <script>
+        function startGift() {
+            const name = document.getElementById('name').value.trim();
+            if (!name) return alert('Please enter your name');
+            
+            document.getElementById('name-form').style.display = 'none';
+            document.getElementById('countdown').style.display = 'block';
+            
+            let seconds = 10;
+            const countdown = document.getElementById('countdown');
+            countdown.textContent = `Loading your gift... ${seconds}s`;
+            
+            const timer = setInterval(() => {
+                seconds--;
+                countdown.textContent = `Loading your gift... ${seconds}s`;
+                
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    showGift(name);
+                }
+            }, 1000);
+        }
+        
+        function showGift(name) {
+            document.getElementById('countdown').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').innerHTML = `
+                <h2>For ${name}</h2>
+                <p>May Allah bless you with happiness, health, and success</p>
+                <p>This gift is sent with love from Islamic World</p>
+            `;
+            
+            // Generate shareable link
+            const link = window.location.href.split('?')[0] + '?to=' + encodeURIComponent(name);
+            document.getElementById('share-link').value = link;
+            document.getElementById('share').style.display = 'block';
+        }
+        
+        function copyLink() {
+            const link = document.getElementById('share-link');
+            link.select();
+            document.execCommand('copy');
+            alert('Link copied!');
+        }
+        
+        // Check if name is in URL (for shared links)
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const toName = urlParams.get('to');
+            if (toName) {
+                document.getElementById('name').value = toName;
+                startGift();
+            }
+        };
+    </script>
+</body>
 </html>
